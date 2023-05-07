@@ -56,3 +56,24 @@ stateData = json.dumps(stateObj).encode("utf-8")
 headers = {"Content-Type": "application/json"}
 resp = requests.post("http://localhost:8089/v1.0/state/statestore", data=stateData, headers=headers)
 ```
+
+### CHECK VALUES IN REDIS CONTAINER
+
+```bash
+docker ps
+CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS                       PORTS                              NAMES
+9473f383aa08   openzipkin/zipkin   "start-zipkin"           9 months ago   Up About an hour (healthy)   9410/tcp, 0.0.0.0:9411->9411/tcp   dapr_zipkin
+42e835fc616a   daprio/dapr:1.8.3   "./placement"            9 months ago   Up About an hour             0.0.0.0:6050->50005/tcp            dapr_placement
+d84a0c57285f   redis               "docker-entrypoint.s…"   9 months ago   Up About an hour             0.0.0.0:6379->6379/tcp             dapr_redis
+
+docker exec -it dapr_redis redis-cli
+127.0.0.1:6379> KEYS *
+1) "hello-dapr||order_1"
+2) "Sagerampant-Stone||color"
+3) "hello-dapr||mystate"
+127.0.0.1:6379> HGETALL hello-dapr||mystate
+1) "data"
+2) "27"
+3) "version"
+4) "27"
+```
