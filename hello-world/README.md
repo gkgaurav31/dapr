@@ -1,5 +1,7 @@
 # HELLO WORLD DAPR
 
+This is a quickstart sample for using Dapr in Standalone Mode.
+
 ## COMMANDS
 
 ```bash
@@ -79,4 +81,11 @@ time="2023-05-07T17:58:54.429385+05:30" level=info msg="actor runtime started. a
 == APP == 127.0.0.1 - - [07/May/2023 17:58:54] "GET /dapr/subscribe HTTP/1.1" 404 -
 time="2023-05-07T17:58:54.4395347+05:30" level=info msg="dapr initialized. Status: Running. Init Elapsed 929.8618ms" app_id=hello-dapr instance=DESKTOP-526RVOF scope=dapr.runtime type=log ver=1.8.3
 time="2023-05-07T17:58:54.4566707+05:30" level=info msg="placement tables updated, version: 0" app_id=hello-dapr instance=DESKTOP-526RVOF scope=dapr.runtime.actor.internal.placement type=log ver=1.8.3        
+```
+
+## TEST
+
+```bash
+curl http://localhost:8089/v1.0/invoke/hello-dapr/method/greeting
+Hello, World!
 ```
