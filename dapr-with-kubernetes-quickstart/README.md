@@ -77,3 +77,24 @@ NAME           READY   UP-TO-DATE   AVAILABLE   AGE
 nodereceiver   1/1     1            1           14m
 pythonsender   1/1     1            1           14m
 ```
+
+### Check the Pods logs
+
+```bash
+kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+nodereceiver-7b7c8f7b6b-zxcd9   2/2     Running   0          4m59s
+pythonsender-6cfb6b4c67-znstt   2/2     Running   0          4m59s
+
+kubectl logs nodereceiver-7b7c8f7b6b-zxcd9 node -f
+Receiver is running on port 8088
+{ msg: 'Hello, World! 2' }
+{ msg: 'Hello, World! 3' }
+{ msg: 'Hello, World! 4' }
+{ msg: 'Hello, World! 5' }
+{ msg: 'Hello, World! 6' }
+{ msg: 'Hello, World! 7' }
+{ msg: 'Hello, World! 8' }
+{ msg: 'Hello, World! 9' }
+{ msg: 'Hello, World! 10' }
+```
